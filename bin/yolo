@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+bash bin/setup
+
+BRANCHNAME="yolo"
+
+git checkout -B $BRANCHNAME
+git commit --allow-empty -m "A commit message."
+git push -u origin $BRANCHNAME
+
+gh pr create -f
+gh pr merge --merge --delete-branch
+
+bash bin/teardown
